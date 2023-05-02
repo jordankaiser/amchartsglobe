@@ -106,7 +106,7 @@ const whiteListCountries = [
 function setCountryFound(country) {
   const countryDetectorElement = document.querySelector('.country-detector span');
 
-  const countrySupported = whiteListCountries.some((whiteListCountry) => {
+  whiteListCountries.some((whiteListCountry) => {
     const countryCodes = Object.keys(whiteListCountry);
     if (countryCodes.includes(country)) {
       countryDetectorElement.innerHTML = `🎉 - ${country} is supported!`;
