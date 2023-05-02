@@ -3,7 +3,6 @@ am5.ready(function() {
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
   var root = am5.Root.new("chartdiv");
-  console.log(root);
   
   
   // Set themes
@@ -74,7 +73,7 @@ am5.ready(function() {
   });
   
   function selectCountry(id) {
-    console.log(id);
+    setCountryFound(id)
     var dataItem = polygonSeries.getDataItemById(id);
     var target = dataItem.get("mapPolygon");
     if (target) {
@@ -95,4 +94,16 @@ am5.ready(function() {
   // Make stuff animate on load
   chart.appear(1000, 100);
   
-  }); // end am5.ready()
+}); // end am5.ready()
+
+const whiteListCountries = ['CD'];
+
+function setCountryFound(country) {
+  const countryDetectorElement = document.querySelector('.country-detector span');
+
+  if (whiteListCountries.includes(country)) {
+    countryDetectorElement.innerHTML = '🎉';
+  } else {
+    countryDetectorElement.innerHTML = '👎';
+  }
+}
