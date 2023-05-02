@@ -96,14 +96,23 @@ am5.ready(function() {
   
 }); // end am5.ready()
 
-const whiteListCountries = ['CD'];
+const whiteListCountries = [
+  {
+    'CD': 'Congo, Democratic Republic',
+    'AO': 'Angola',
+  },
+];
 
 function setCountryFound(country) {
   const countryDetectorElement = document.querySelector('.country-detector span');
 
-  if (whiteListCountries.includes(country)) {
-    countryDetectorElement.innerHTML = '🎉';
-  } else {
-    countryDetectorElement.innerHTML = '👎';
-  }
+  const countrySupported = whiteListCountries.some((whiteListCountry) => {
+    const countryCodes = Object.keys(whiteListCountry);
+    if (countryCodes.includes(country)) {
+      countryDetectorElement.innerHTML = `🎉 - ${country} is supported!`;
+      return true;
+    } else {
+      countryDetectorElement.innerHTML = `👎 - ${country} is NOT supported!`;
+    }
+  });
 }
